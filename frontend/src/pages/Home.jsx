@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import products from "../data/products";
 
 
-  const Home = () => {
+  const Home = ({ cartCount, onAddToCart }) => {
+  
 
   
   return (
+    
     <div className="min-h-screen bg-gray-900">
 
       <div className="flex justify-end gap-4 p-6">
+        <Link
+  to="/cart"
+  className="text-white text-xl font-bold hover:text-blue-400"
+>
+  🛒Cart: {cartCount}
+</Link>
 
         <Link
           to="/login"
@@ -38,13 +46,12 @@ import products from "../data/products";
 
     {products.map((product) => (
       <ProductCard
-        key={product.id}
-        name={product.name}
-        price={product.price}
-        stock={product.stock}
-        image={product.image}
+  key={product.id}
+  product={product}
+  onAddToCart={onAddToCart}
+/>
 
-      />
+      
     ))}
 
   </div>

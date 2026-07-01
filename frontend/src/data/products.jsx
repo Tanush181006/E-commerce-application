@@ -28,7 +28,7 @@ const products = [
     id: 4,
     name: "New Balance 574",
     price: 6999,
-    stock: false,
+    stock: true,
     image: newbalance,
   },
 ];

@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home.jsx";
@@ -7,19 +8,31 @@ import NotFound from "../pages/NotFound.jsx";
 import AdminLogin from "../admin/pages/AdminLogin.jsx";
 import Dashboard from "../admin/pages/Dashboard";
 import QuantitySelector from "../components/QuantitySelector";
+import Cart from "../pages/Cart.jsx";
 
-
-function AppRoutes() {
+function AppRoutes({cart, cartCount, onAddToCart, onIncreaseQuantity, onDecreaseQuantity, onRemoveFromCart}) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+  path="/"
+  element={
+    <Home
+      cartCount={cartCount}
+      onAddToCart={onAddToCart}
+    />
+  }
+/>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/components/quantity-selector" element={<QuantitySelector />} />
+        <Route path="/cart" element={<Cart cart={cart}
+         onIncreaseQuantity={onIncreaseQuantity} 
+         onDecreaseQuantity={onDecreaseQuantity}
+          onRemoveFromCart={onRemoveFromCart} />} />
       </Routes>
     </BrowserRouter>
   );
